@@ -1,6 +1,9 @@
 # Windows Stuff
 .idea/
 
+#Migrations
+blog/migrations/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
