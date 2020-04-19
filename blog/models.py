@@ -4,7 +4,6 @@ from datetime import datetime
 from ckeditor.fields import RichTextField
 
 
-
 def validate_file_extension(value):
     import os
     from django.core.exceptions import ValidationError
