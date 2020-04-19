@@ -1,8 +1,11 @@
 # Windows Stuff
 .idea/
 
-#Migrations
+# Migrations
 blog/migrations/
+
+# Static Files
+files/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
