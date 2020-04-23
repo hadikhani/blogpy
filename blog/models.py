@@ -43,6 +43,8 @@ class Article(models.Model):
                                  on_delete=models.CASCADE)
     author = models.ForeignKey(UserProfile,
                                on_delete=models.CASCADE)
+    promoted = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.title
