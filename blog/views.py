@@ -8,6 +8,7 @@ from rest_framework import status
 
 from . import serializers
 
+
 class IndexPage(TemplateView):
 
     def get(self, request, **kwargs):
@@ -48,18 +49,21 @@ class ContactPage(TemplateView):
 class AllArticleAPIView(APIView):
     def get(self, request, format=None):
         try:
-            all_articles = Article.objects.all().order_by('created_at')[:10]
+            all_articles = Article.objects.all().order_by('created_at')
             data = []
 
             for article in all_articles:
                 data.append({
+                    'id': article.id,
                     'title': article.title,
                     'cover': article.cover.url,
+                    'short_content': article.short_content,
                     'content': article.content,
                     'created_at': article.created_at,
                     'category': article.category.title,
                     'author': article.author.user.first_name + ' ' + article.author.user.last_name,
                     'promoted': article.promoted,
+                    'first_slider': article.first_slider,
                 })
             return Response({'data': data}, status=status.HTTP_200_OK)
         except:
@@ -78,6 +82,7 @@ class SingleArticleAPIView(APIView):
         except:
             return Response({'status': "Internal Server Error, We'll check it later"},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class SearchArticleAPIView(APIView):
     def get(self, request, format=None):
@@ -100,6 +105,7 @@ class SearchArticleAPIView(APIView):
         except:
             return Response({'data':"Internal server error, We'll check it later"},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class SubmitArticleAPIView(APIView):
     def post(self, request, format=None):
@@ -134,6 +140,7 @@ class SubmitArticleAPIView(APIView):
         except:
             return Response({'data': "Internal server error, We'll check it later"},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class UpdateCoverArticleAPIView(APIView):
     def post(self, request, format=None):

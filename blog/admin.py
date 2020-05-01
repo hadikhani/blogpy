@@ -13,7 +13,7 @@ admin.site.register(UserProfile, UserProfileAdmin)
 
 class ArticleAdmin(admin.ModelAdmin):
     search_fields = ['title', 'content']
-    list_display = ['id', 'title', 'category', 'created_at', 'promoted']
+    list_display = ['id', 'title', 'category', 'created_at', 'promoted', 'first_slider']
 
 
 admin.site.register(Article, ArticleAdmin)

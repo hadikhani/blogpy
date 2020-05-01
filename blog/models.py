@@ -36,6 +36,10 @@ class Article(models.Model):
                              blank=False)
     cover = models.FileField(upload_to='files/article/cover/',
                              validators=[validate_file_extension])
+    short_content = models.CharField(max_length=128,
+                             null=False,
+                             blank=False,
+                             default='test')
     content = RichTextField()
     created_at = models.DateTimeField(default=datetime.now,
                                       blank=False)
@@ -44,6 +48,7 @@ class Article(models.Model):
     author = models.ForeignKey(UserProfile,
                                on_delete=models.CASCADE)
     promoted = models.BooleanField(default=False)
+    first_slider = models.BooleanField(default=False)
 
 
     def __str__(self):
